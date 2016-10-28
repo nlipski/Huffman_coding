@@ -43,7 +43,8 @@ def Read():
     for line in d:
         if line[0]!=' ':
            line.split()
-    chars[4]='blank'
+    chars[4]='$'
+    chars[55]='*'
     return chars, freq
 
 
@@ -75,17 +76,16 @@ def Tree(Chars,Freq):
         freq.append(Vij.getFreq())
     return Vij
 
-
 def TurnToBinary(V,char):
     vi = V.left
     vj = V.right
-    if char in vi.getChar() and len(vi.getChar())>1:
-        return TurnToBinary(vi,char)+'0'
-    elif char in vj.getChar() and len(vj.getChar())>1:
-        return TurnToBinary(vj, char)+'1'
+    if vi != 0 and vj != 0:
+        if char in vi.getChar():
+            return '0'+TurnToBinary(vi,char)
+        elif char in vj.getChar():
+            return '1'+TurnToBinary(vj, char)
     else:
         return ''
-
 
 
 
@@ -124,10 +124,21 @@ print(Huff_len)
 
 dictionary_idsd = dictionary.copy()
 print("Dictionary length: ",len(dictionary))
-for each_bitstring in dictionary:
-    string=each_bitstring.getBinary()
-    dictionary_idsd.remove(each_bitstring)
-    for each_other in dictionary_idsd:
-        if string in each_other.getBinary():
-            print("We fucked up")
+# for each_bitstring in dictionary:
+#     string=each_bitstring.getBinary()
+#     dictionary_idsd.remove(each_bitstring)
+#     for each_other in dictionary_idsd:
+#         if string in each_other.getBinary():
+#             print("We fucked up")
+
+
+
+
+
+
+
+
+
+
+
 
